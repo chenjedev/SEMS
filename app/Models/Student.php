@@ -10,6 +10,10 @@ class Student extends Model
     /** @use HasFactory<\Database\Factories\StudentFactory> */
     use HasFactory;
 
+    public $incrementing = false;
+
+    protected $keyType = 'int';
+
      protected $fillable = [
         'name',
         'admission_number',
@@ -21,5 +25,10 @@ class Student extends Model
 {
     
     return $this->hasMany(Mark::class, 'student_id');
+}
+
+   public function schoolClass()
+{
+    return $this->belongsTo(SchoolClass::class, 'class_id'); 
 }
 }

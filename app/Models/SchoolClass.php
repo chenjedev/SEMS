@@ -18,4 +18,16 @@ class SchoolClass extends Model
     public function classTeacher(){
         return $this->belongsTo(User::class, 'teacher_id');
     }
+
+    public function subjects()
+    {
+
+        return $this->belongsToMany(Subject::class, 'subject_school_class', 'school_class_id', 'subject_id');
+    }
+
+   
+    public function students()
+    {
+        return $this->hasMany(Student::class, 'class_id');
+    }
 }

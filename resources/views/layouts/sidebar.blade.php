@@ -31,7 +31,15 @@
                    class="flex items-center px-4 py-2.5 text-sm font-medium transition-colors duration-200 rounded-lg {{ request()->routeIs('teachers.index') ? 'bg-indigo-50 text-indigo-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}">
                     <span class="mx-2 font-bold text-base mt-4">Teachers</span>
                 </a><hr>
-
+                
+                <a href="{{ route('admin.results.index') }}" 
+                   class="flex items-center px-4 py-2.5 text-sm font-medium transition-colors duration-200 rounded-lg {{ request()->routeIs('admin.results.index') ? 'bg-indigo-50 text-indigo-700' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900' }}">
+                    <span class="mx-2 font-bold text-base mt-4">Results</span>
+                </a><hr>
+                 <a href="{{ route('admin.results.index') }}" 
+                       class="inline-flex items-center px-4 py-2 bg-black border border-transparent rounded-md font-bold text-xs text-white uppercase tracking-widest hover:bg-gray-700 transition">
+                      Result Approvals
+                </a>
 
             @endif
 
@@ -63,6 +71,12 @@
                 </div>
 
                 @if(auth()->user()->managedClass)
+              
+
+                <a href="{{ route('class.performance', auth()->user()->managedClass->id) }}" 
+                   class="flex items-center px-4 py-2.5 text-sm font-medium text-gray-600 transition-colors duration-200 rounded-lg hover:bg-gray-100 hover:text-gray-900">
+                    <span class="mx-2 text-base mt-4">Class Performance</span>
+                </a><hr>
                 <a href="{{ route('students.index')}}" 
                    class="flex items-center px-4 py-2.5 text-sm font-medium text-gray-600 transition-colors duration-200 rounded-lg hover:bg-gray-100 hover:text-gray-900">
                     <span class="mx-2 text-base mt-4">My Students</span>
@@ -75,6 +89,7 @@
                    class="flex items-center px-4 py-2.5 text-sm font-medium text-gray-600 transition-colors duration-200 rounded-lg hover:bg-gray-100 hover:text-gray-900">
                     <span class="mx-2 text-base mt-4">Atendance</span>
                 </a><hr>
+               
                 @endif
             @endif
         </nav>

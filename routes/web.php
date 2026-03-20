@@ -8,6 +8,7 @@ use App\Http\Controllers\SchoolClassController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\ClassTeacherController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -52,6 +53,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/marks/create' , [MarkController::class, 'create'])->name('marks.create');
     Route::post('/marks/store', [MarkController::class, 'store'])->name('marks.store');
     Route::get('/marks/list' , [MarkController::class, 'index'])->name('marks.index');
+
+    Route::get('/class-performance/{id}', [ClassTeacherController::class, 'showPerformance'])
+    ->name('class.performance');
+     Route::post('/class/{id}/submit-to-admin', [ClassTeacherController::class, 'submitToAdmin'])
+    ->name('class.submit_to_admin');
+
+    Route::get('/admin/submitted-results', [AdminController::class, 'viewSubmittedResults'])->name('admin.results.index');
+Route::get('/admin/review/{class_id}', [AdminController::class, 'reviewClassMarks'])->name('admin.results.review');
+Route::post('/admin/approve/{class_id}', [AdminController::class, 'approveResults'])->name('admin.results.approve');
+Route::post('/admin/reject/{class_id}', [AdminController::class, 'rejectResults'])->name('admin.results.reject');
+
 });
 
 require __DIR__.'/auth.php';
